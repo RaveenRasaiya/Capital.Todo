@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Capital.Core
+namespace Capital.Infrastructure
 {
     public class Class1
     {
