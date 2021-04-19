@@ -34,8 +34,8 @@ namespace Capital.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ToDoItem toDoItem)
         {
-            await _commandDispatchService.DispatchAsync(new CreateNewToDoCommand { ToDoItem = toDoItem });
-            return Ok();
+            var result = await _commandDispatchService.DispatchAsync(new CreateNewToDoCommand { ToDoItem = toDoItem });
+            return result != null && result.IsSuccess ? Ok() : BadRequest(result?.ErrorMessage);
         }
     }
 }
