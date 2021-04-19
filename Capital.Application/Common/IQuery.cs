@@ -1,4 +1,4 @@
-﻿namespace Capital.Core.Interfaces.Queries
+﻿namespace Capital.Application.Common
 {
     public interface IQuery<TResult>
     {

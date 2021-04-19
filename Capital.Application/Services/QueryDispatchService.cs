@@ -1,6 +1,6 @@
-﻿using Capital.Core.Interfaces.Common;
+﻿using Capital.Application.Common;
+using Capital.Core.Interfaces.Common;
 using Capital.Core.Interfaces.Handlers;
-using Capital.Core.Interfaces.Queries;
 using System;
 using System.Threading.Tasks;
 

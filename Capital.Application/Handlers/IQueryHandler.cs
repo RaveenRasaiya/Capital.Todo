@@ -1,4 +1,4 @@
-﻿using Capital.Core.Interfaces.Queries;
+﻿using Capital.Application.Common;
 using System.Threading.Tasks;
 
 namespace Capital.Core.Interfaces.Handlers

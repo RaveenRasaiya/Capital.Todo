@@ -1,4 +1,4 @@
-﻿using Capital.Core.Interfaces.Commands;
+﻿using Capital.Application.Common;
 using Capital.Core.Interfaces.Common;
 using Capital.Core.Interfaces.Handlers;
 using System;

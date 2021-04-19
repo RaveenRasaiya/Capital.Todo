@@ -1,4 +1,4 @@
-﻿using Capital.Core.Interfaces.Commands;
+﻿using Capital.Application.Common;
 using System.Threading.Tasks;
 
 namespace Capital.Core.Interfaces.Common
