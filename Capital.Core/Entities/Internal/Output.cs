@@ -1,4 +1,4 @@
-﻿namespace Capital.Core.Models
+﻿namespace Capital.Core.Entities.Internal
 {
     public class Output<T>
     {
@@ -57,7 +57,7 @@
         }
 
         public string ErrorCode { get; set; }
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = string.Empty;
         public T Result { get; set; }
         public bool IsSuccess { get; set; }
         public bool IsNotSuccess

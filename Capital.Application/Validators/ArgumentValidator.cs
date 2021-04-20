@@ -1,15 +1,24 @@
-﻿using Capital.Application.Attributes;
+﻿using Capital.Application.Exceptions;
+using Capital.Core.Interfaces.Common;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Capital.Application.Validators
 {
-    internal static class ArgumentValidator
+    public class ArgumentValidator : IArgumentValidator
     {
-        public static void NotNull([ValidatedNotNull] object value)
+        public void Validate(dynamic input)
         {
-            if (value == null)
+            if (input == null)
             {
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException(input);
+            }
+
+            var validationResults = new List<ValidationResult>();
+            if (!Validator.TryValidateObject(input, new ValidationContext(input), validationResults, true))
+            {
+                throw new ApiException(validationResults[0].ErrorMessage);
             }
         }
     }

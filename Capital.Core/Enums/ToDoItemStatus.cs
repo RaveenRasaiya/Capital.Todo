@@ -4,7 +4,7 @@
     {
         New = 1,
         InPorgress,
-        Completed,
+        Completed,                
         Cancelled
     }
 }

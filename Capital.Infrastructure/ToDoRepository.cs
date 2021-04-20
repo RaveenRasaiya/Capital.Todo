@@ -1,10 +1,8 @@
-﻿using Capital.Core.Interfaces.Infrastructure;
-using Capital.Core.Models;
+﻿using Capital.Core.Entities;
+using Capital.Core.Interfaces.Infrastructure;
 using Capital.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Capital.Infrastructure
@@ -19,31 +17,33 @@ namespace Capital.Infrastructure
         {
             _toDoDbContext = toDoDbContext;
         }
-        public async Task<int> Add(ToDoItem entity)
+        public async Task<int> AddAsync(ToDoItem entity)
         {
             _toDoDbContext.ToDoItems.Add(entity);
-            return await _toDoDbContext.SaveChangesAsync();
+            await _toDoDbContext.SaveChangesAsync();
+            return entity.Id;
         }
 
-        public async Task<IEnumerable<ToDoItem>> GetAll()
+        public async Task<IEnumerable<ToDoItem>> GetAllAsync()
         {
             return await _toDoDbContext.ToDoItems.ToListAsync();
         }
 
-        public async Task<ToDoItem> GetById(int entityId)
+        public async Task<ToDoItem> GetByIdAsync(int entityId)
         {
             return await _toDoDbContext.ToDoItems.FirstOrDefaultAsync(x => x.Id == entityId);
-
         }
 
-        public Task<bool> Remove(ToDoItem entity)
+        public async Task<bool> RemoveAsync(ToDoItem entity)
         {
-            throw new NotImplementedException();
+            _toDoDbContext.ToDoItems.Remove(entity);
+            return await _toDoDbContext.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> Update(ToDoItem entity)
+        public async Task<bool> UpdateAsync(ToDoItem entity)
         {
-            throw new NotImplementedException();
+            _toDoDbContext.ToDoItems.Update(entity);
+            return await _toDoDbContext.SaveChangesAsync() > 0;
         }
     }
 }

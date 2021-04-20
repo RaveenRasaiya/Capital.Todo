@@ -1,4 +1,4 @@
-﻿using Capital.Core.Models;
+﻿using Capital.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Capital.Infrastructure.Context

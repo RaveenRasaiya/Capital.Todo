@@ -1,4 +1,4 @@
-﻿using Capital.Core.Models;
+﻿using Capital.Core.Entities;
 
 namespace Capital.Core.Interfaces.Infrastructure
 {
