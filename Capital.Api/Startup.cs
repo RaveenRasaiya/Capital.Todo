@@ -57,6 +57,8 @@ namespace Capital.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware(typeof(GlobalExceptionMiddleware)) ;
+
             app.UseHttpsRedirection();
 
             app.UseSwagger();

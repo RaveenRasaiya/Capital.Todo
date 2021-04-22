@@ -23,8 +23,7 @@ namespace Capital.Application.Commands
         public CreateNewToDoCommandHandler(IToDoRepository toDoRepository, IArgumentValidator argumentValidator)
         {
             _toDoRepository = toDoRepository;
-            _argumentValidator = argumentValidator;
-      
+            _argumentValidator = argumentValidator;      
         }
 
         public async Task<Output<int>> HandleAsync(CreateToDoCommand command)

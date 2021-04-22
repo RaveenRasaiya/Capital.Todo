@@ -12,7 +12,7 @@ namespace Capital.Application.Validators
         {
             if (input == null)
             {
-                throw new ArgumentNullException(input);
+                throw new ArgumentNullException(nameof(input));
             }
 
             var validationResults = new List<ValidationResult>();
