@@ -45,7 +45,7 @@ namespace Capital.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateToDo([FromBody] ToDoModel toDo)
+        public async Task<IActionResult> CreateToDo(ToDoModel toDo)
         {
             var result = await _commandDispatchService.DispatchAsync(new CreateToDoCommand { ToDoModel = toDo });
             if (result != null && result.IsSuccess)
@@ -65,10 +65,8 @@ namespace Capital.Api.Controllers
             return result != null && result.IsSuccess ? Ok() : BadRequest(result?.ErrorMessage);
         }
 
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RemoveToDo(int id)
+        [HttpDelete("{id}")]     
+        public async Task<IActionResult> DeleteTodo(int id)
         {
             var result = await _commandDispatchService.DispatchAsync(new RemoveToDoCommand { Id = id });
             return result != null && result.IsSuccess ? Ok() : BadRequest(result?.ErrorMessage);

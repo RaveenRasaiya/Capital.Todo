@@ -38,8 +38,7 @@ namespace Capital.Api
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });
-            });
-            services.AddSingleton<IObjectModelValidator, NullObjectModelValidator>();
+            });   
             services.AddDbContext<ToDoDbContext>(context => { context.UseInMemoryDatabase("ToDoDatabase"); });
             services.AddScoped<IArgumentValidator, ArgumentValidator>();
             services.AddScoped<IToDoRepository, ToDoRepository>();
