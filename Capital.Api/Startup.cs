@@ -1,5 +1,4 @@
 using Capital.Api.Extensions;
-using Capital.Api.Helpers;
 using Capital.Application.Extensions;
 using Capital.Application.Validators;
 using Capital.Core.Interfaces.Common;
@@ -8,8 +7,6 @@ using Capital.Infrastructure;
 using Capital.Infrastructure.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,23 +26,13 @@ namespace Capital.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CapitalPolicy",
-                    builder =>
-                    {
-                        builder.WithOrigins("*")
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
-                    });
-            });   
-            services.AddDbContext<ToDoDbContext>(context => { context.UseInMemoryDatabase("ToDoDatabase"); });
-            services.AddScoped<IArgumentValidator, ArgumentValidator>();
-            services.AddScoped<IToDoRepository, ToDoRepository>();
+            services.AddCorsPolicy();
+            services.AddCommonServices();
             services.AddCqrsHandlers();
             services.AddDispatchServices();
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddClientAppServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,9 +43,11 @@ namespace Capital.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMiddleware(typeof(GlobalExceptionMiddleware)) ;
+            app.UseMiddleware(typeof(GlobalExceptionMiddleware));
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseSwagger();
 

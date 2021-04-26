@@ -45,6 +45,7 @@ namespace Capital.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateToDo(ToDoModel toDo)
         {
             var result = await _commandDispatchService.DispatchAsync(new CreateToDoCommand { ToDoModel = toDo });
